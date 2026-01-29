@@ -5,7 +5,6 @@ Imports System.Web
 Public Class frmMain
 
     Private Sub SendOverTCP(str As String, ByRef resp_txtBox As TextBox)
-
         Try
             Dim tcpClient As New System.Net.Sockets.TcpClient()
             tcpClient.Connect(txtIPAddress.Text, 25521)
@@ -50,7 +49,7 @@ Public Class frmMain
 
     Private Function GetTime() As String
         Dim t As String
-        t = Format(Now(), "YYYY-MM-DD hh:mm:ss")
+        t = Format(Now(), "yyyy-MM-dd HH:mm:ss")
         GetTime = t
     End Function
 
@@ -81,6 +80,9 @@ Public Class frmMain
         txtReq01_Batch.Text = txtReq01_Batch.Text.Replace("%P3%", txtReq01_P3.Text)
         txtReq01_Batch.Text = txtReq01_Batch.Text.Replace("%P4%", txtReq01_P4.Text)
 
-        SendOverTCP(txtReq01_Batch.Text, txtReq01_Response)
+        Dim send_text As String
+        send_text = txtReq01_Batch.Text
+
+        SendOverTCP(send_text, txtReq01_Response)
     End Sub
 End Class
