@@ -117,116 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="txtReq01_Stack.Text" xml:space="preserve">
-    <value>&lt;?xml version="1.0"?&gt;
-&lt;Request&gt;
-  &lt;Request.Type&gt;01&lt;/Request.Type&gt;
-  &lt;Request.Id&gt;AAAAAAAA&lt;/Request.Id&gt;
-  &lt;Ticket&gt;
-    &lt;Ticket.Code&gt;BBBBBBBB&lt;/Ticket.Code&gt;
-    &lt;Ticket.Date&gt;DD-MMM-YYYY&lt;/Ticket.Date&gt;
-    &lt;Ticket.Time&gt;HH:MM&lt;/Ticket.Time&gt;
-    &lt;Ticket.Truck&gt;CCCCCCCCCC&lt;/Ticket.Truck&gt;
-    &lt;Ticket.Color&gt;DDDDDDDDDDDD&lt;/Ticket.Color&gt;
-    &lt;Ticket.Load&gt;EE.EE&lt;/Ticket.Load&gt;
-    &lt;Ticket.Uom&gt;YD&lt;/Ticket.Uom&gt;
-    &lt;Ticket.Cement&gt;FFFF.FF&lt;/Ticket.Cement&gt;
-    &lt;Ticket.CementUom&gt;LB&lt;/Ticket.CementUom&gt;
-    &lt;Ticket.Holdback&gt;000.00&lt;/Ticket.Holdback&gt;
-    &lt;Ticket.HoldbackUom&gt;LB&lt;/Ticket.HoldbackUom&gt;
-    &lt;Ticket.Customer&gt;GGGGGGGGGG&lt;/Ticket.Customer&gt;
-    &lt;Ticket.Name&gt;TICKETNAME&lt;/Ticket.Name&gt;
-    &lt;Ticket.Weighmaster&gt;WEIGHMASTER&lt;/Ticket.Weighmaster&gt;
-  &lt;/Ticket&gt;
-&lt;/Request&gt;
-
-</value>
-  </data>
-  <data name="txtReq01_Stack_BASE.Text" xml:space="preserve">
-    <value>&lt;?xml version="1.0"?&gt;
-&lt;Request&gt;
-  &lt;Request.Type&gt;01&lt;/Request.Type&gt;
-  &lt;Request.Id&gt;AAAAAAAA&lt;/Request.Id&gt;
-  &lt;Ticket&gt;
-    &lt;Ticket.Code&gt;BBBBBBBB&lt;/Ticket.Code&gt;
-    &lt;Ticket.Date&gt;DD-MMM-YYYY&lt;/Ticket.Date&gt;
-    &lt;Ticket.Time&gt;HH:MM&lt;/Ticket.Time&gt;
-    &lt;Ticket.Truck&gt;CCCCCCCCCC&lt;/Ticket.Truck&gt;
-    &lt;Ticket.Color&gt;DDDDDDDDDDDD&lt;/Ticket.Color&gt;
-    &lt;Ticket.Load&gt;EE.EE&lt;/Ticket.Load&gt;
-    &lt;Ticket.Uom&gt;YD&lt;/Ticket.Uom&gt;
-    &lt;Ticket.Cement&gt;FFFF.FF&lt;/Ticket.Cement&gt;
-    &lt;Ticket.CementUom&gt;LB&lt;/Ticket.CementUom&gt;
-    &lt;Ticket.Holdback&gt;000.00&lt;/Ticket.Holdback&gt;
-    &lt;Ticket.HoldbackUom&gt;LB&lt;/Ticket.HoldbackUom&gt;
-    &lt;Ticket.Customer&gt;GGGGGGGGGG&lt;/Ticket.Customer&gt;
-    &lt;Ticket.Name&gt;TICKETNAME&lt;/Ticket.Name&gt;
-    &lt;Ticket.Weighmaster&gt;WEIGHMASTER&lt;/Ticket.Weighmaster&gt;
-  &lt;/Ticket&gt;
-&lt;/Request&gt;
-</value>
-  </data>
-  <data name="txtReq02_Delete_BASE.Text" xml:space="preserve">
-    <value>&lt;?xml version="1.0"?&gt;
-&lt;Request&gt;
-  &lt;Request.Type&gt;02&lt;/Request.Type&gt;
-  &lt;Request.Id&gt;AAAAAAAA&lt;/Request.Id&gt;
-  &lt;Ticket&gt;
-    &lt;Ticket.Code&gt;BBBBBBBB&lt;/Ticket.Code&gt;
-    &lt;Ticket.Date&gt;DD-MMM-YYYY&lt;/Ticket.Date&gt;
-    &lt;Ticket.Time&gt;HH:MM&lt;/Ticket.Time&gt;
-    &lt;Ticket.Truck&gt;CCCCCCCCCC&lt;/Ticket.Truck&gt;
-  &lt;/Ticket&gt;
-&lt;/Request&gt;
-</value>
-  </data>
-  <data name="txtReq02_DeleteReq.Text" xml:space="preserve">
-    <value>&lt;?xml version="1.0"?&gt;
-&lt;Request&gt;
-  &lt;Request.Type&gt;02&lt;/Request.Type&gt;
-  &lt;Request.Id&gt;AAAAAAAA&lt;/Request.Id&gt;
-  &lt;Ticket&gt;
-    &lt;Ticket.Code&gt;BBBBBBBB&lt;/Ticket.Code&gt;
-    &lt;Ticket.Date&gt;DD-MMM-YYYY&lt;/Ticket.Date&gt;
-    &lt;Ticket.Time&gt;HH:MM&lt;/Ticket.Time&gt;
-    &lt;Ticket.Truck&gt;CCCCCCCCCC&lt;/Ticket.Truck&gt;
-  &lt;/Ticket&gt;
-&lt;/Request&gt;
-
-</value>
-  </data>
   <metadata name="OpenFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>21, 20</value>
   </metadata>
-  <metadata name="VL.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="SIKA.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="txtReq03_ColorReq.Text" xml:space="preserve">
+  <data name="txtReq01_Batch.Text" xml:space="preserve">
     <value>&lt;?xml version="1.0"?&gt;
-&lt;Request&gt;
-  &lt;Request.Type&gt;03&lt;/Request.Type&gt;
-  &lt;Request.Id&gt;AAAAAAAA&lt;/Request.Id&gt;
-  &lt;Color&gt;
-    &lt;Color.Code&gt;DDDDDDDDDDDD&lt;/Color.Code&gt;
-    &lt;Color.Name&gt;ANY NAME  &lt;/Color.Name&gt;
-  &lt;/Color&gt;
-&lt;/Request&gt;
-
-</value>
-  </data>
-  <data name="txtReq03_Color_BASE.Text" xml:space="preserve">
-    <value>&lt;?xml version="1.0"?&gt;
-&lt;Request&gt;
-  &lt;Request.Type&gt;03&lt;/Request.Type&gt;
-  &lt;Request.Id&gt;AAAAAAAA&lt;/Request.Id&gt;
-  &lt;Color&gt;
-    &lt;Color.Code&gt;DDDDDDDDDDDD&lt;/Color.Code&gt;
-    &lt;Color.Name&gt;ANY NAME  &lt;/Color.Name&gt;
-  &lt;/Color&gt;
-&lt;/Request&gt;
+&lt;MESSAGE&gt;
+  &lt;REQUEST&gt;
+    &lt;TYPE&gt;01&lt;/TYPE&gt;
+    &lt;BATCHID&gt;%BATCHID%&lt;/BATCHID&gt;
+    &lt;TIME&gt;%TIME%&lt;/TIME&gt;
+    &lt;ORDER&gt;%ORDER%&lt;/ORDER&gt;
+    &lt;TICKET&gt;%TICKET%&lt;/TICKET&gt;
+    &lt;TRUCK&gt;%TRUCK&lt;/TRUCK&gt;
+    &lt;ALIAS&gt;%ALIAS%&lt;/ALIAS&gt;
+    &lt;LOAD&gt;%LOAD%&lt;/LOAD&gt;
+    &lt;UOM&gt;%UOM%&lt;/UOM&gt;
+    &lt;CONTENT&gt;%CONTENT%&lt;/CONTENT&gt;
+    &lt;CUSTOMER&gt;%CUSTOMER%&lt;/CUSTOMER&gt;
+    &lt;NAME&gt;%NAME%&lt;/NAME&gt;
+    &lt;PROJECT&gt;&lt;/PROJECT&gt;
+    &lt;WEIGHMASTER&gt;%WM%&lt;/WEIGHMASTER&gt;
+    &lt;PIGMENT1&gt;%P1%&lt;/PIGMENT1&gt;
+    &lt;PIGMENT2&gt;%P2%&lt;/PIGMENT2&gt;
+    &lt;PIGMENT3&gt;%P3%&lt;/PIGMENT3&gt;
+    &lt;PIGMENT4&gt;%P4%&lt;/PIGMENT4&gt;
+    &lt;PIGMENT5&gt;%P5%&lt;/PIGMENT5&gt;
+    &lt;PIGMENT6&gt;%P6%&lt;/PIGMENT6&gt;
+  &lt;/REQUEST&gt;
+&lt;/MESSAGE&gt;
 </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
