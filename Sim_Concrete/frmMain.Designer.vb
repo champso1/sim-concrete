@@ -73,9 +73,33 @@ Partial Class frmMain
         Me.txtReq01_BatchID = New System.Windows.Forms.TextBox()
         Me.lblReq01_Alias = New System.Windows.Forms.Label()
         Me.txtReq01_Alias = New System.Windows.Forms.TextBox()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.btnReq05 = New System.Windows.Forms.Button()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.txtReq05_Response = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.txtReq05_Request = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtReq05_WM = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtReq05_Order = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtReq05_Truck = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.txtReq05_Ticket = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.txtReq05_BatchID = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.txtReq05_Alias = New System.Windows.Forms.TextBox()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.lblTCPListenerRunning = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtIPAddress
@@ -116,10 +140,15 @@ Partial Class frmMain
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(1, 1)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
+        Me.TabControl1.Controls.Add(Me.TabPage5)
+        Me.TabControl1.Controls.Add(Me.TabPage6)
+        Me.TabControl1.Controls.Add(Me.TabPage7)
+        Me.TabControl1.Location = New System.Drawing.Point(1, -1)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1635, 780)
+        Me.TabControl1.Size = New System.Drawing.Size(1646, 782)
         Me.TabControl1.TabIndex = 88
         '
         'TabPage1
@@ -133,7 +162,7 @@ Partial Class frmMain
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1627, 751)
+        Me.TabPage1.Size = New System.Drawing.Size(1638, 753)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "00 - Status"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -241,7 +270,7 @@ Partial Class frmMain
         Me.TabPage2.Location = New System.Drawing.Point(4, 25)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1627, 751)
+        Me.TabPage2.Size = New System.Drawing.Size(1594, 751)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "01 - Batch"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -628,12 +657,264 @@ Partial Class frmMain
         Me.txtReq01_Alias.Text = "DVS25"
         Me.txtReq01_Alias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'TabPage3
+        '
+        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(1594, 751)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "04 - Discharge Ready"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.btnReq05)
+        Me.TabPage4.Controls.Add(Me.Label14)
+        Me.TabPage4.Controls.Add(Me.txtReq05_Response)
+        Me.TabPage4.Controls.Add(Me.Label16)
+        Me.TabPage4.Controls.Add(Me.txtReq05_Request)
+        Me.TabPage4.Controls.Add(Me.Label7)
+        Me.TabPage4.Controls.Add(Me.txtReq05_WM)
+        Me.TabPage4.Controls.Add(Me.Label8)
+        Me.TabPage4.Controls.Add(Me.txtReq05_Order)
+        Me.TabPage4.Controls.Add(Me.Label9)
+        Me.TabPage4.Controls.Add(Me.txtReq05_Truck)
+        Me.TabPage4.Controls.Add(Me.Label10)
+        Me.TabPage4.Controls.Add(Me.txtReq05_Ticket)
+        Me.TabPage4.Controls.Add(Me.Label11)
+        Me.TabPage4.Controls.Add(Me.txtReq05_BatchID)
+        Me.TabPage4.Controls.Add(Me.Label12)
+        Me.TabPage4.Controls.Add(Me.txtReq05_Alias)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(1594, 751)
+        Me.TabPage4.TabIndex = 3
+        Me.TabPage4.Text = "05 - Discharge"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'btnReq05
+        '
+        Me.btnReq05.Location = New System.Drawing.Point(713, 174)
+        Me.btnReq05.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnReq05.Name = "btnReq05"
+        Me.btnReq05.Size = New System.Drawing.Size(195, 66)
+        Me.btnReq05.TabIndex = 126
+        Me.btnReq05.Text = "Send Request"
+        Me.btnReq05.UseVisualStyleBackColor = True
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(1223, 239)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(70, 16)
+        Me.Label14.TabIndex = 125
+        Me.Label14.Text = "Response"
+        '
+        'txtReq05_Response
+        '
+        Me.txtReq05_Response.Location = New System.Drawing.Point(976, 259)
+        Me.txtReq05_Response.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtReq05_Response.Multiline = True
+        Me.txtReq05_Response.Name = "txtReq05_Response"
+        Me.txtReq05_Response.Size = New System.Drawing.Size(565, 422)
+        Me.txtReq05_Response.TabIndex = 124
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(306, 239)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(58, 16)
+        Me.Label16.TabIndex = 123
+        Me.Label16.Text = "Request"
+        '
+        'txtReq05_Request
+        '
+        Me.txtReq05_Request.Location = New System.Drawing.Point(53, 259)
+        Me.txtReq05_Request.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtReq05_Request.Multiline = True
+        Me.txtReq05_Request.Name = "txtReq05_Request"
+        Me.txtReq05_Request.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtReq05_Request.Size = New System.Drawing.Size(565, 422)
+        Me.txtReq05_Request.TabIndex = 122
+        Me.txtReq05_Request.Text = resources.GetString("txtReq05_Request.Text")
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(734, 105)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(87, 16)
+        Me.Label7.TabIndex = 121
+        Me.Label7.Text = "Weighmaster"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtReq05_WM
+        '
+        Me.txtReq05_WM.Location = New System.Drawing.Point(840, 102)
+        Me.txtReq05_WM.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtReq05_WM.Name = "txtReq05_WM"
+        Me.txtReq05_WM.Size = New System.Drawing.Size(151, 22)
+        Me.txtReq05_WM.TabIndex = 120
+        Me.txtReq05_WM.Text = "user"
+        Me.txtReq05_WM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(454, 72)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(92, 16)
+        Me.Label8.TabIndex = 119
+        Me.Label8.Text = "Order Number"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtReq05_Order
+        '
+        Me.txtReq05_Order.Location = New System.Drawing.Point(565, 69)
+        Me.txtReq05_Order.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtReq05_Order.Name = "txtReq05_Order"
+        Me.txtReq05_Order.Size = New System.Drawing.Size(151, 22)
+        Me.txtReq05_Order.TabIndex = 118
+        Me.txtReq05_Order.Text = "113"
+        Me.txtReq05_Order.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(780, 43)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(41, 16)
+        Me.Label9.TabIndex = 117
+        Me.Label9.Text = "Truck"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtReq05_Truck
+        '
+        Me.txtReq05_Truck.Location = New System.Drawing.Point(840, 40)
+        Me.txtReq05_Truck.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtReq05_Truck.Name = "txtReq05_Truck"
+        Me.txtReq05_Truck.Size = New System.Drawing.Size(151, 22)
+        Me.txtReq05_Truck.TabIndex = 116
+        Me.txtReq05_Truck.Text = "0421"
+        Me.txtReq05_Truck.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(502, 102)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(44, 16)
+        Me.Label10.TabIndex = 115
+        Me.Label10.Text = "Ticket"
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtReq05_Ticket
+        '
+        Me.txtReq05_Ticket.Location = New System.Drawing.Point(565, 99)
+        Me.txtReq05_Ticket.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtReq05_Ticket.Name = "txtReq05_Ticket"
+        Me.txtReq05_Ticket.Size = New System.Drawing.Size(151, 22)
+        Me.txtReq05_Ticket.TabIndex = 114
+        Me.txtReq05_Ticket.Text = "442942"
+        Me.txtReq05_Ticket.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(489, 40)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(57, 16)
+        Me.Label11.TabIndex = 113
+        Me.Label11.Text = "Batch ID"
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtReq05_BatchID
+        '
+        Me.txtReq05_BatchID.Location = New System.Drawing.Point(565, 37)
+        Me.txtReq05_BatchID.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtReq05_BatchID.Name = "txtReq05_BatchID"
+        Me.txtReq05_BatchID.Size = New System.Drawing.Size(151, 22)
+        Me.txtReq05_BatchID.TabIndex = 112
+        Me.txtReq05_BatchID.Text = "121028"
+        Me.txtReq05_BatchID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(784, 74)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(37, 16)
+        Me.Label12.TabIndex = 111
+        Me.Label12.Text = "Alias"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtReq05_Alias
+        '
+        Me.txtReq05_Alias.Location = New System.Drawing.Point(840, 70)
+        Me.txtReq05_Alias.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtReq05_Alias.Name = "txtReq05_Alias"
+        Me.txtReq05_Alias.Size = New System.Drawing.Size(151, 22)
+        Me.txtReq05_Alias.TabIndex = 110
+        Me.txtReq05_Alias.Text = "DVS25"
+        Me.txtReq05_Alias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TabPage5
+        '
+        Me.TabPage5.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage5.Size = New System.Drawing.Size(1594, 751)
+        Me.TabPage5.TabIndex = 4
+        Me.TabPage5.Text = "06 - Discharge Complete"
+        Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'TabPage6
+        '
+        Me.TabPage6.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage6.Name = "TabPage6"
+        Me.TabPage6.Size = New System.Drawing.Size(1594, 751)
+        Me.TabPage6.TabIndex = 5
+        Me.TabPage6.Text = "07 - History"
+        Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'TabPage7
+        '
+        Me.TabPage7.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage7.Name = "TabPage7"
+        Me.TabPage7.Size = New System.Drawing.Size(1594, 751)
+        Me.TabPage7.TabIndex = 6
+        Me.TabPage7.Text = "10 - Status"
+        Me.TabPage7.UseVisualStyleBackColor = True
+        '
+        'lblTCPListenerRunning
+        '
+        Me.lblTCPListenerRunning.AutoSize = True
+        Me.lblTCPListenerRunning.BackColor = System.Drawing.Color.Red
+        Me.lblTCPListenerRunning.Location = New System.Drawing.Point(1610, 7)
+        Me.lblTCPListenerRunning.Name = "lblTCPListenerRunning"
+        Me.lblTCPListenerRunning.Size = New System.Drawing.Size(22, 16)
+        Me.lblTCPListenerRunning.TabIndex = 89
+        Me.lblTCPListenerRunning.Text = "     "
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1637, 898)
+        Me.ClientSize = New System.Drawing.Size(1651, 898)
+        Me.Controls.Add(Me.lblTCPListenerRunning)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.btnQuit)
         Me.Controls.Add(Me.lblIPAddress)
@@ -647,6 +928,8 @@ Partial Class frmMain
         Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -701,4 +984,27 @@ Partial Class frmMain
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label2 As Label
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents Label7 As Label
+    Friend WithEvents txtReq05_WM As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents txtReq05_Order As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents txtReq05_Truck As TextBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents txtReq05_Ticket As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents txtReq05_BatchID As TextBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents txtReq05_Alias As TextBox
+    Friend WithEvents TabPage5 As TabPage
+    Friend WithEvents TabPage6 As TabPage
+    Friend WithEvents TabPage7 As TabPage
+    Friend WithEvents btnReq05 As Button
+    Friend WithEvents Label14 As Label
+    Friend WithEvents txtReq05_Response As TextBox
+    Friend WithEvents Label16 As Label
+    Friend WithEvents txtReq05_Request As TextBox
+    Friend WithEvents lblTCPListenerRunning As Label
 End Class

@@ -1,8 +1,11 @@
-﻿Imports System.Net.Sockets
-Imports System.IO
-Imports System.Web
+﻿Imports System.Net
+Imports System.Net.Sockets
+Imports System.Threading.Tasks
 
 Public Class frmMain
+    Private listener As TcpListener
+    Private isRunning As Boolean = False
+
 
     Private Sub SendOverTCP(str As String, ByRef resp_txtBox As TextBox)
         Try
@@ -48,8 +51,7 @@ Public Class frmMain
     End Sub
 
     Private Function GetTime() As String
-        Dim t As String
-        t = Format(Now(), "yyyy-MM-dd HH:mm:ss")
+        Dim t As String = Format(Now(), "yyyy-MM-dd HH:mm:ss")
         GetTime = t
     End Function
 
@@ -80,9 +82,62 @@ Public Class frmMain
         txtReq01_Batch.Text = txtReq01_Batch.Text.Replace("%P3%", txtReq01_P3.Text)
         txtReq01_Batch.Text = txtReq01_Batch.Text.Replace("%P4%", txtReq01_P4.Text)
 
-        Dim send_text As String
-        send_text = txtReq01_Batch.Text
-
-        SendOverTCP(send_text, txtReq01_Response)
+        SendOverTCP(txtReq01_Batch.Text, txtReq01_Response)
     End Sub
+
+    Private Sub btnReq05_Click(sender As Object, e As EventArgs) Handles btnReq05.Click
+        txtReq05_Request.Text = txtReq05_Request.Text.Replace("%BATCHID%", txtReq01_BatchID.Text)
+        txtReq05_Request.Text = txtReq05_Request.Text.Replace("%TIME%", GetTime())
+        txtReq05_Request.Text = txtReq05_Request.Text.Replace("%ORDER%", txtReq01_Order.Text)
+        txtReq05_Request.Text = txtReq05_Request.Text.Replace("%TICKET%", txtReq01_Ticket.Text)
+        txtReq05_Request.Text = txtReq05_Request.Text.Replace("%TRUCK%", txtReq01_Truck.Text)
+        txtReq05_Request.Text = txtReq05_Request.Text.Replace("%ALIAS%", txtReq01_Alias.Text)
+        txtReq05_Request.Text = txtReq05_Request.Text.Replace("%WM%", txtReq01_WM.Text)
+
+        SendOverTCP(txtReq05_Request.Text, txtReq05_Response)
+    End Sub
+
+    Private Async Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If isRunning Then Return
+
+        Dim ipaddr As IPAddress = New IPAddress(txtIPAddress.Text)
+        listener = New TcpListener(ipaddr, 25521)
+        listener.Start()
+        isRunning = True
+        Me.Invoke(Sub()
+                      lblTCPListenerRunning.BackColor = Color.Green
+                  End Sub)
+
+        Await Task.Run(Async Function()
+                           While isRunning
+                               Try
+                                   Dim client As TcpClient = Await listener.AcceptTcpClientAsync()
+                                   ProcessClient(client)
+                               Catch ex As ObjectDisposedException
+                                   Exit While
+                               Catch ex As Exception
+                                   MessageBox.Show("[ERROR] frmMain_Load(): Error accepting/dispatching tcp client.")
+                                   Application.Exit()
+                               End Try
+                           End While
+                       End Function)
+    End Sub
+
+    Private Sub ProcessClient(client As TcpClient)
+        Dim networkStream As NetworkStream = client.GetStream()
+        If Not networkStream.CanRead Or Not networkStream.CanWrite Then
+            MessageBox.Show("[ERROR] ProcessClient(): Network stream is not readable and writable")
+        End If
+
+        Dim returnbytes(client.ReceiveBufferSize) As Byte
+        networkStream.Read(returnbytes, 0, CInt(client.ReceiveBufferSize))
+
+
+    End Sub
+
+    Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        isRunning = False
+        listener?.Stop()
+    End Sub
+
 End Class
