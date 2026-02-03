@@ -216,6 +216,7 @@ Public Class frmMain
         End Select
 
         ' MessageBox.Show("Received Request [" + Str(type) + "]!")
+        If type = 10 Then Return ' We don't want to alert on the status request I think, a bit useless
         Dim dialogres As DialogResult = MessageBox.Show("Received Request " + Str(type) + ". Go to tab?", "Title", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
         If (dialogres = DialogResult.Yes) Then
             Me.Invoke(Sub()

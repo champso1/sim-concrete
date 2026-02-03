@@ -129,7 +129,7 @@
     &lt;TIME&gt;%TIME%&lt;/TIME&gt;
     &lt;ORDER&gt;%ORDER%&lt;/ORDER&gt;
     &lt;TICKET&gt;%TICKET%&lt;/TICKET&gt;
-    &lt;TRUCK&gt;%TRUCK&lt;/TRUCK&gt;
+    &lt;TRUCK&gt;%TRUCK%&lt;/TRUCK&gt;
     &lt;ALIAS&gt;%ALIAS%&lt;/ALIAS&gt;
     &lt;LOAD&gt;%LOAD%&lt;/LOAD&gt;
     &lt;UOM&gt;%UOM%&lt;/UOM&gt;
@@ -156,7 +156,7 @@
     &lt;TIME&gt;%TIME%&lt;/TIME&gt;
     &lt;ORDER&gt;%ORDER%&lt;/ORDER&gt;
     &lt;TICKET&gt;%TICKET%&lt;/TICKET&gt;
-    &lt;TRUCK&gt;%TRUCK&lt;/TRUCK&gt;
+    &lt;TRUCK&gt;%TRUCK%&lt;/TRUCK&gt;
     &lt;ALIAS&gt;%ALIAS%&lt;/ALIAS&gt;
     &lt;PROJECT&gt;&lt;/PROJECT&gt;
     &lt;ALLEY&gt;A&lt;/ALLEY&gt;
