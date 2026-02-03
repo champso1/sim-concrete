@@ -74,7 +74,6 @@ Partial Class frmMain
         Me.lblReq01_Alias = New System.Windows.Forms.Label()
         Me.txtReq01_Alias = New System.Windows.Forms.TextBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.btnReq04 = New System.Windows.Forms.Button()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.txtReq04_Response = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -98,24 +97,23 @@ Partial Class frmMain
         Me.Label12 = New System.Windows.Forms.Label()
         Me.txtReq05_Alias = New System.Windows.Forms.TextBox()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.btnReq06 = New System.Windows.Forms.Button()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.txtReq06_Response = New System.Windows.Forms.TextBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.txtReq06_Request = New System.Windows.Forms.TextBox()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
-        Me.TabPage7 = New System.Windows.Forms.TabPage()
-        Me.lblTCPListenerRunning = New System.Windows.Forms.Label()
-        Me.btnReq10 = New System.Windows.Forms.Button()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.txtReq10_Response = New System.Windows.Forms.TextBox()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.txtReq10_Request = New System.Windows.Forms.TextBox()
         Me.btnReq07 = New System.Windows.Forms.Button()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.txtReq07_Response = New System.Windows.Forms.TextBox()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.txtReq07_Request = New System.Windows.Forms.TextBox()
+        Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.txtReq10_Response = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.txtReq10_Request = New System.Windows.Forms.TextBox()
+        Me.lblTCPListenerRunning = New System.Windows.Forms.Label()
+        Me.btnStartListening = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -683,7 +681,6 @@ Partial Class frmMain
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.btnReq04)
         Me.TabPage3.Controls.Add(Me.Label17)
         Me.TabPage3.Controls.Add(Me.txtReq04_Response)
         Me.TabPage3.Controls.Add(Me.Label18)
@@ -695,17 +692,6 @@ Partial Class frmMain
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "04 - Discharge Ready"
         Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'btnReq04
-        '
-        Me.btnReq04.Enabled = False
-        Me.btnReq04.Location = New System.Drawing.Point(735, 123)
-        Me.btnReq04.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnReq04.Name = "btnReq04"
-        Me.btnReq04.Size = New System.Drawing.Size(195, 66)
-        Me.btnReq04.TabIndex = 119
-        Me.btnReq04.Text = "Send Acknowledgement"
-        Me.btnReq04.UseVisualStyleBackColor = True
         '
         'Label17
         '
@@ -952,7 +938,6 @@ Partial Class frmMain
         '
         'TabPage5
         '
-        Me.TabPage5.Controls.Add(Me.btnReq06)
         Me.TabPage5.Controls.Add(Me.Label19)
         Me.TabPage5.Controls.Add(Me.txtReq06_Response)
         Me.TabPage5.Controls.Add(Me.Label20)
@@ -964,17 +949,6 @@ Partial Class frmMain
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "06 - Discharge Complete"
         Me.TabPage5.UseVisualStyleBackColor = True
-        '
-        'btnReq06
-        '
-        Me.btnReq06.Enabled = False
-        Me.btnReq06.Location = New System.Drawing.Point(735, 123)
-        Me.btnReq06.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnReq06.Name = "btnReq06"
-        Me.btnReq06.Size = New System.Drawing.Size(195, 66)
-        Me.btnReq06.TabIndex = 124
-        Me.btnReq06.Text = "Send Acknowledgement"
-        Me.btnReq06.UseVisualStyleBackColor = True
         '
         'Label19
         '
@@ -1030,81 +1004,6 @@ Partial Class frmMain
         Me.TabPage6.Text = "07 - History"
         Me.TabPage6.UseVisualStyleBackColor = True
         '
-        'TabPage7
-        '
-        Me.TabPage7.Controls.Add(Me.btnReq10)
-        Me.TabPage7.Controls.Add(Me.Label21)
-        Me.TabPage7.Controls.Add(Me.txtReq10_Response)
-        Me.TabPage7.Controls.Add(Me.Label22)
-        Me.TabPage7.Controls.Add(Me.txtReq10_Request)
-        Me.TabPage7.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(1638, 753)
-        Me.TabPage7.TabIndex = 6
-        Me.TabPage7.Text = "10 - Status"
-        Me.TabPage7.UseVisualStyleBackColor = True
-        '
-        'lblTCPListenerRunning
-        '
-        Me.lblTCPListenerRunning.AutoSize = True
-        Me.lblTCPListenerRunning.BackColor = System.Drawing.Color.Red
-        Me.lblTCPListenerRunning.Location = New System.Drawing.Point(1610, 7)
-        Me.lblTCPListenerRunning.Name = "lblTCPListenerRunning"
-        Me.lblTCPListenerRunning.Size = New System.Drawing.Size(22, 16)
-        Me.lblTCPListenerRunning.TabIndex = 89
-        Me.lblTCPListenerRunning.Text = "     "
-        '
-        'btnReq10
-        '
-        Me.btnReq10.Enabled = False
-        Me.btnReq10.Location = New System.Drawing.Point(735, 123)
-        Me.btnReq10.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnReq10.Name = "btnReq10"
-        Me.btnReq10.Size = New System.Drawing.Size(195, 66)
-        Me.btnReq10.TabIndex = 129
-        Me.btnReq10.Text = "Send Acknowledgement"
-        Me.btnReq10.UseVisualStyleBackColor = True
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(1245, 188)
-        Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(70, 16)
-        Me.Label21.TabIndex = 128
-        Me.Label21.Text = "Response"
-        '
-        'txtReq10_Response
-        '
-        Me.txtReq10_Response.Location = New System.Drawing.Point(998, 208)
-        Me.txtReq10_Response.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtReq10_Response.Multiline = True
-        Me.txtReq10_Response.Name = "txtReq10_Response"
-        Me.txtReq10_Response.Size = New System.Drawing.Size(565, 422)
-        Me.txtReq10_Response.TabIndex = 127
-        Me.txtReq10_Response.Text = "Awaiting Request..."
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(328, 188)
-        Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(58, 16)
-        Me.Label22.TabIndex = 126
-        Me.Label22.Text = "Request"
-        '
-        'txtReq10_Request
-        '
-        Me.txtReq10_Request.Location = New System.Drawing.Point(75, 208)
-        Me.txtReq10_Request.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtReq10_Request.Multiline = True
-        Me.txtReq10_Request.Name = "txtReq10_Request"
-        Me.txtReq10_Request.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtReq10_Request.Size = New System.Drawing.Size(565, 422)
-        Me.txtReq10_Request.TabIndex = 125
-        '
         'btnReq07
         '
         Me.btnReq07.Location = New System.Drawing.Point(735, 123)
@@ -1155,12 +1054,85 @@ Partial Class frmMain
         Me.txtReq07_Request.TabIndex = 127
         Me.txtReq07_Request.Text = "<?xml version=""1.0""?>" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "<MESSAGE>" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "  <REQUEST>" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "    <TYPE>07</TYPE>" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "  </REQUEST>" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "</MESSAGE>"
         '
+        'TabPage7
+        '
+        Me.TabPage7.Controls.Add(Me.Label21)
+        Me.TabPage7.Controls.Add(Me.txtReq10_Response)
+        Me.TabPage7.Controls.Add(Me.Label22)
+        Me.TabPage7.Controls.Add(Me.txtReq10_Request)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage7.Name = "TabPage7"
+        Me.TabPage7.Size = New System.Drawing.Size(1638, 753)
+        Me.TabPage7.TabIndex = 6
+        Me.TabPage7.Text = "10 - Status"
+        Me.TabPage7.UseVisualStyleBackColor = True
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(1245, 188)
+        Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(70, 16)
+        Me.Label21.TabIndex = 128
+        Me.Label21.Text = "Response"
+        '
+        'txtReq10_Response
+        '
+        Me.txtReq10_Response.Location = New System.Drawing.Point(998, 208)
+        Me.txtReq10_Response.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtReq10_Response.Multiline = True
+        Me.txtReq10_Response.Name = "txtReq10_Response"
+        Me.txtReq10_Response.Size = New System.Drawing.Size(565, 422)
+        Me.txtReq10_Response.TabIndex = 127
+        Me.txtReq10_Response.Text = "Awaiting Request..."
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(328, 188)
+        Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(58, 16)
+        Me.Label22.TabIndex = 126
+        Me.Label22.Text = "Request"
+        '
+        'txtReq10_Request
+        '
+        Me.txtReq10_Request.Location = New System.Drawing.Point(75, 208)
+        Me.txtReq10_Request.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtReq10_Request.Multiline = True
+        Me.txtReq10_Request.Name = "txtReq10_Request"
+        Me.txtReq10_Request.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtReq10_Request.Size = New System.Drawing.Size(565, 422)
+        Me.txtReq10_Request.TabIndex = 125
+        '
+        'lblTCPListenerRunning
+        '
+        Me.lblTCPListenerRunning.AutoSize = True
+        Me.lblTCPListenerRunning.BackColor = System.Drawing.Color.Red
+        Me.lblTCPListenerRunning.Location = New System.Drawing.Point(1610, 7)
+        Me.lblTCPListenerRunning.Name = "lblTCPListenerRunning"
+        Me.lblTCPListenerRunning.Size = New System.Drawing.Size(22, 16)
+        Me.lblTCPListenerRunning.TabIndex = 89
+        Me.lblTCPListenerRunning.Text = "     "
+        '
+        'btnStartListening
+        '
+        Me.btnStartListening.Location = New System.Drawing.Point(202, 805)
+        Me.btnStartListening.Name = "btnStartListening"
+        Me.btnStartListening.Size = New System.Drawing.Size(134, 43)
+        Me.btnStartListening.TabIndex = 90
+        Me.btnStartListening.Text = "Start Listening"
+        Me.btnStartListening.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1651, 898)
+        Me.Controls.Add(Me.btnStartListening)
         Me.Controls.Add(Me.lblTCPListenerRunning)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.btnQuit)
@@ -1262,17 +1234,14 @@ Partial Class frmMain
     Friend WithEvents Label16 As Label
     Friend WithEvents txtReq05_Request As TextBox
     Friend WithEvents lblTCPListenerRunning As Label
-    Friend WithEvents btnReq04 As Button
     Friend WithEvents Label17 As Label
     Friend WithEvents txtReq04_Response As TextBox
     Friend WithEvents Label18 As Label
     Friend WithEvents txtReq04_Request As TextBox
-    Friend WithEvents btnReq06 As Button
     Friend WithEvents Label19 As Label
     Friend WithEvents txtReq06_Response As TextBox
     Friend WithEvents Label20 As Label
     Friend WithEvents txtReq06_Request As TextBox
-    Friend WithEvents btnReq10 As Button
     Friend WithEvents Label21 As Label
     Friend WithEvents txtReq10_Response As TextBox
     Friend WithEvents Label22 As Label
@@ -1282,4 +1251,5 @@ Partial Class frmMain
     Friend WithEvents txtReq07_Response As TextBox
     Friend WithEvents Label24 As Label
     Friend WithEvents txtReq07_Request As TextBox
+    Friend WithEvents btnStartListening As Button
 End Class

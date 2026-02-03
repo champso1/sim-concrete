@@ -151,26 +151,16 @@
     <value>&lt;?xml version="1.0"?&gt;
 &lt;MESSAGE&gt;
   &lt;REQUEST&gt;
-    &lt;TYPE&gt;01&lt;/TYPE&gt;
+    &lt;TYPE&gt;05&lt;/TYPE&gt;
     &lt;BATCHID&gt;%BATCHID%&lt;/BATCHID&gt;
     &lt;TIME&gt;%TIME%&lt;/TIME&gt;
     &lt;ORDER&gt;%ORDER%&lt;/ORDER&gt;
     &lt;TICKET&gt;%TICKET%&lt;/TICKET&gt;
     &lt;TRUCK&gt;%TRUCK&lt;/TRUCK&gt;
     &lt;ALIAS&gt;%ALIAS%&lt;/ALIAS&gt;
-    &lt;LOAD&gt;%LOAD%&lt;/LOAD&gt;
-    &lt;UOM&gt;%UOM%&lt;/UOM&gt;
-    &lt;CONTENT&gt;%CONTENT%&lt;/CONTENT&gt;
-    &lt;CUSTOMER&gt;%CUSTOMER%&lt;/CUSTOMER&gt;
-    &lt;NAME&gt;%NAME%&lt;/NAME&gt;
     &lt;PROJECT&gt;&lt;/PROJECT&gt;
+    &lt;ALLEY&gt;A&lt;/ALLEY&gt;
     &lt;WEIGHMASTER&gt;%WM%&lt;/WEIGHMASTER&gt;
-    &lt;PIGMENT1&gt;%P1%&lt;/PIGMENT1&gt;
-    &lt;PIGMENT2&gt;%P2%&lt;/PIGMENT2&gt;
-    &lt;PIGMENT3&gt;%P3%&lt;/PIGMENT3&gt;
-    &lt;PIGMENT4&gt;%P4%&lt;/PIGMENT4&gt;
-    &lt;PIGMENT5&gt;0&lt;/PIGMENT5&gt;
-    &lt;PIGMENT6&gt;0&lt;/PIGMENT6&gt;
   &lt;/REQUEST&gt;
 &lt;/MESSAGE&gt;</value>
   </data>
