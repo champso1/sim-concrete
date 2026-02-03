@@ -7,22 +7,9 @@ Public Class frmMain
     Private client As TcpClient
     Private isRunning As Boolean = False
 
-    Private Req0406ResponseTemplate As String = <text>
-                                                    <MESSAGE>
-                                                        <ACKNOWLEDGE>
-                                                            <TYPE>%TYPE%</TYPE>
-                                                            <BATCHID>%BATCHID%</BATCHID>
-                                                        </ACKNOWLEDGE>
-                                                    </MESSAGE>
-                                                </text>.Value
+    Private Req0406ResponseTemplate As String = "<?xml version=""1.0""?><MESSAGE><ACKNOWLEDGE><TYPE>%TYPE%</TYPE><BATCHID>%BATCHID%</BATCHID></ACKNOWLEDGE></MESSAGE>"
     Private Req0406BatchID As String
-    Private Req10ResponseTemplate As String = <text>
-                                                  <MESSAGE>
-                                                      <ACKNOWLEDGE>
-                                                          <TYPE>10</TYPE>
-                                                      </ACKNOWLEDGE>
-                                                  </MESSAGE>
-                                              </text>.Value
+    Private Req10ResponseTemplate As String = "<?xml version=""1.0""?><MESSAGE><ACKNOWLEDGE><TYPE>10</TYPE></ACKNOWLEDGE></MESSAGE>"
 
     Private Sub SendOverTCP(str As String, ByRef resp_txtBox As TextBox)
         Try
@@ -72,15 +59,19 @@ Public Class frmMain
         GetTime = t
     End Function
 
-    Private Sub btnReq00_Status_Click(sender As Object, e As EventArgs) Handles btnReq00_Status.Click
-        SendOverTCP(txtReq00_Status.Text, txtReq00_Response)
-    End Sub
-
     Private Sub btnQuit_Click(sender As Object, e As EventArgs) Handles btnQuit.Click
         Application.Exit()
     End Sub
 
+    Private Sub btnReq00_Status_Click(sender As Object, e As EventArgs) Handles btnReq00_Status.Click
+        txtReq00_Response.Text = "Awaiting response..."
+
+        SendOverTCP(txtReq00_Status.Text, txtReq00_Response)
+    End Sub
+
     Private Sub btnReq01_Batch_Click(sender As Object, e As EventArgs) Handles btnReq01_Batch.Click
+        txtReq01_Response.Text = "Awaiting response..."
+
         txtReq01_Batch.Text = txtReq01_Batch.Text.Replace("%BATCHID%", txtReq01_BatchID.Text)
         txtReq01_Batch.Text = txtReq01_Batch.Text.Replace("%TIME%", GetTime())
         txtReq01_Batch.Text = txtReq01_Batch.Text.Replace("%ORDER%", txtReq01_Order.Text)
@@ -103,6 +94,8 @@ Public Class frmMain
     End Sub
 
     Private Sub btnReq05_Click(sender As Object, e As EventArgs) Handles btnReq05.Click
+        txtReq05_Response.Text = "Awaiting response..."
+
         txtReq05_Request.Text = txtReq05_Request.Text.Replace("%BATCHID%", txtReq01_BatchID.Text)
         txtReq05_Request.Text = txtReq05_Request.Text.Replace("%TIME%", GetTime())
         txtReq05_Request.Text = txtReq05_Request.Text.Replace("%ORDER%", txtReq01_Order.Text)
@@ -115,10 +108,12 @@ Public Class frmMain
     End Sub
 
     Private Sub btnReq07_Click(sender As Object, e As EventArgs) Handles btnReq07.Click
+        txtReq07_Response.Text = "Awaiting response..."
+
         SendOverTCP(txtReq07_Request.Text, txtReq07_Response)
     End Sub
 
-    Private Async Sub StartListening(sender As Object, e As EventArgs) Handles btnStartListening.Click
+    Private Async Sub StartListening(sender As Object, e As EventArgs) Handles MyBase.Load
         If isRunning Then Return
 
         Dim ipaddr As IPAddress = IPAddress.Parse("192.168.175.1")
@@ -178,8 +173,6 @@ Public Class frmMain
 
         Select Case type
             Case 4
-                txtReq04_Request.Text = returndata
-
                 idx1 = returndata.IndexOf("<BATCHID>", StringComparison.CurrentCultureIgnoreCase) + 9
                 idx2 = returndata.IndexOf("</BATCHID>", StringComparison.CurrentCultureIgnoreCase)
                 typestr = returndata.Substring(idx1, idx2 - idx1)
@@ -190,10 +183,12 @@ Public Class frmMain
                 Dim sendBytes As Byte() = System.Text.Encoding.ASCII.GetBytes(responsetext)
                 Dim stream As NetworkStream = client.GetStream()
                 stream.Write(sendBytes, 0, sendBytes.Length)
-                txtReq04_Response.Text = responsetext
-            Case 6
-                txtReq06_Request.Text = returndata
 
+                Me.Invoke(Sub()
+                              txtReq04_Request.Text = returndata
+                              txtReq04_Response.Text = responsetext
+                          End Sub)
+            Case 6
                 idx1 = returndata.IndexOf("<BATCHID>", StringComparison.CurrentCultureIgnoreCase) + 9
                 idx2 = returndata.IndexOf("</BATCHID>", StringComparison.CurrentCultureIgnoreCase)
                 typestr = returndata.Substring(idx1, idx2 - idx1)
@@ -204,17 +199,37 @@ Public Class frmMain
                 Dim sendBytes As Byte() = System.Text.Encoding.ASCII.GetBytes(responsetext)
                 Dim stream As NetworkStream = client.GetStream()
                 stream.Write(sendBytes, 0, sendBytes.Length)
-                txtReq06_Response.Text = responsetext
-            Case 10
-                txtReq10_Request.Text = returndata
 
+                Me.Invoke(Sub()
+                              txtReq06_Request.Text = returndata
+                              txtReq06_Response.Text = responsetext
+                          End Sub)
+            Case 10
                 Dim sendBytes As Byte() = System.Text.Encoding.ASCII.GetBytes(Req10ResponseTemplate)
                 Dim stream As NetworkStream = client.GetStream()
                 stream.Write(sendBytes, 0, sendBytes.Length)
-                txtReq10_Response.Text = Req10ResponseTemplate
+
+                Me.Invoke(Sub()
+                              txtReq10_Request.Text = returndata
+                              txtReq10_Response.Text = Req10ResponseTemplate
+                          End Sub)
         End Select
 
-        MessageBox.Show("Received Request [" + Str(type) + "]!")
+        ' MessageBox.Show("Received Request [" + Str(type) + "]!")
+        Dim dialogres As DialogResult = MessageBox.Show("Received Request " + Str(type) + ". Go to tab?", "Title", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
+        If (dialogres = DialogResult.Yes) Then
+            Me.Invoke(Sub()
+                          Select Case type
+                              Case 4
+                                  TabControl1.SelectedIndex = 2
+                              Case 6
+                                  TabControl1.SelectedIndex = 4
+                              Case 10
+                                  TabControl1.SelectedIndex = 6
+                          End Select
+                      End Sub)
+        End If
+
 
     End Sub
 

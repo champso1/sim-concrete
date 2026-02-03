@@ -113,7 +113,6 @@ Partial Class frmMain
         Me.Label22 = New System.Windows.Forms.Label()
         Me.txtReq10_Request = New System.Windows.Forms.TextBox()
         Me.lblTCPListenerRunning = New System.Windows.Forms.Label()
-        Me.btnStartListening = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -1117,22 +1116,12 @@ Partial Class frmMain
         Me.lblTCPListenerRunning.TabIndex = 89
         Me.lblTCPListenerRunning.Text = "     "
         '
-        'btnStartListening
-        '
-        Me.btnStartListening.Location = New System.Drawing.Point(202, 805)
-        Me.btnStartListening.Name = "btnStartListening"
-        Me.btnStartListening.Size = New System.Drawing.Size(134, 43)
-        Me.btnStartListening.TabIndex = 90
-        Me.btnStartListening.Text = "Start Listening"
-        Me.btnStartListening.UseVisualStyleBackColor = True
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1651, 898)
-        Me.Controls.Add(Me.btnStartListening)
         Me.Controls.Add(Me.lblTCPListenerRunning)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.btnQuit)
@@ -1251,5 +1240,4 @@ Partial Class frmMain
     Friend WithEvents txtReq07_Response As TextBox
     Friend WithEvents Label24 As Label
     Friend WithEvents txtReq07_Request As TextBox
-    Friend WithEvents btnStartListening As Button
 End Class
