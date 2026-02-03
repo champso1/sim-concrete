@@ -4,8 +4,25 @@ Imports System.Threading.Tasks
 
 Public Class frmMain
     Private listener As TcpListener
+    Private client As TcpClient
     Private isRunning As Boolean = False
 
+    Private Req0406ResponseTemplate As String = <text>
+                                                    <MESSAGE>
+                                                        <ACKNOWLEDGE>
+                                                            <TYPE>%TYPE%</TYPE>
+                                                            <BATCHID>%BATCHID%</BATCHID>
+                                                        </ACKNOWLEDGE>
+                                                    </MESSAGE>
+                                                </text>.Value
+    Private Req0406BatchID As String
+    Private Req10ResponseTemplate As String = <text>
+                                                  <MESSAGE>
+                                                      <ACKNOWLEDGE>
+                                                          <TYPE>10</TYPE>
+                                                      </ACKNOWLEDGE>
+                                                  </MESSAGE>
+                                              </text>.Value
 
     Private Sub SendOverTCP(str As String, ByRef resp_txtBox As TextBox)
         Try
@@ -100,9 +117,17 @@ Public Class frmMain
     Private Async Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If isRunning Then Return
 
-        Dim ipaddr As IPAddress = New IPAddress(txtIPAddress.Text)
+        Dim ipaddr As IPAddress = Nothing
+        IPAddress.TryParse(txtIPAddress.Text, ipaddr)
         listener = New TcpListener(ipaddr, 25521)
-        listener.Start()
+        Try
+            listener.Start()
+        Catch ex As SocketException
+            Dim errorcode As Integer = ex.ErrorCode
+            MessageBox.Show("IPAddress " + txtIPAddress.Text + " is invalid. Will not listen for requests.")
+            Return
+        End Try
+
         isRunning = True
         Me.Invoke(Sub()
                       lblTCPListenerRunning.BackColor = Color.Green
@@ -111,8 +136,8 @@ Public Class frmMain
         Await Task.Run(Async Function()
                            While isRunning
                                Try
-                                   Dim client As TcpClient = Await listener.AcceptTcpClientAsync()
-                                   ProcessClient(client)
+                                   client = Await listener.AcceptTcpClientAsync()
+                                   ProcessClient()
                                Catch ex As ObjectDisposedException
                                    Exit While
                                Catch ex As Exception
@@ -123,7 +148,7 @@ Public Class frmMain
                        End Function)
     End Sub
 
-    Private Sub ProcessClient(client As TcpClient)
+    Private Sub ProcessClient()
         Dim networkStream As NetworkStream = client.GetStream()
         If Not networkStream.CanRead Or Not networkStream.CanWrite Then
             MessageBox.Show("[ERROR] ProcessClient(): Network stream is not readable and writable")
@@ -131,8 +156,49 @@ Public Class frmMain
 
         Dim returnbytes(client.ReceiveBufferSize) As Byte
         networkStream.Read(returnbytes, 0, CInt(client.ReceiveBufferSize))
+        Dim returndata As String = System.Text.Encoding.ASCII.GetString(returnbytes)
 
+        If String.IsNullOrEmpty(returndata) Or Not returndata.StartsWith("<?xml") Then
+            MessageBox.Show("[ERROR] ProcessClient(): Received data either null/empty or doesn't start with '<?xml'")
+            Return
+        End If
 
+        If returndata.IndexOf("<REQUEST>", StringComparison.CurrentCultureIgnoreCase) = -1 Then
+            MessageBox.Show("[ERROR] ProcessClient(): Received something other than a request.")
+            Return
+        End If
+
+        Dim idx1 As Integer = returndata.IndexOf("<TYPE>", StringComparison.CurrentCultureIgnoreCase) + 6
+        Dim idx2 As Integer = returndata.IndexOf("</TYPE>", StringComparison.CurrentCultureIgnoreCase)
+        Dim typestr As String = returndata.Substring(idx1, idx2 - idx1)
+        Dim type As Integer = Integer.Parse(typestr)
+
+        Select Case type
+            Case 4
+                btnReq04.Enabled = True
+                txtReq04_Request.Text = returndata
+                txtReq04_Response.Text = Req0406ResponseTemplate
+
+                idx1 = returndata.IndexOf("<BATCHID>", StringComparison.CurrentCultureIgnoreCase) + 9
+                idx2 = returndata.IndexOf("</BATCHID>", StringComparison.CurrentCultureIgnoreCase)
+                typestr = returndata.Substring(idx1, idx2 - idx1)
+                Req0406BatchID = typestr
+            Case 6
+                btnReq06.Enabled = True
+                txtReq06_Request.Text = returndata
+                txtReq06_Response.Text = Req0406ResponseTemplate
+
+                idx1 = returndata.IndexOf("<BATCHID>", StringComparison.CurrentCultureIgnoreCase) + 9
+                idx2 = returndata.IndexOf("</BATCHID>", StringComparison.CurrentCultureIgnoreCase)
+                typestr = returndata.Substring(idx1, idx2 - idx1)
+                Req0406BatchID = typestr
+            Case 10
+                btnReq10.Enabled = True
+                txtReq10_Request.Text = returndata
+                txtReq10_Response.Text = Req10ResponseTemplate
+        End Select
+
+        MessageBox.Show("Received Request [" + type + "]!")
     End Sub
 
     Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -140,4 +206,34 @@ Public Class frmMain
         listener?.Stop()
     End Sub
 
+    Private Sub btnReq04_Click(sender As Object, e As EventArgs) Handles btnReq04.Click
+        Dim responsetext As String = Req0406ResponseTemplate.Replace("%TYPE%", "04")
+        responsetext = responsetext.Replace("%BATCHID%", Req0406BatchID)
+
+        SendOverTCP(responsetext, txtReq04_Response)
+
+        btnReq04.Enabled = False
+        client.Close()
+    End Sub
+
+    Private Sub btnReq06_Click(sender As Object, e As EventArgs) Handles btnReq06.Click
+        Dim responsetext As String = Req0406ResponseTemplate.Replace("%TYPE%", "06")
+        responsetext = responsetext.Replace("%BATCHID%", Req0406BatchID)
+
+        SendOverTCP(responsetext, txtReq06_Response)
+
+        btnReq06.Enabled = False
+        client.Close()
+    End Sub
+
+    Private Sub btnReq07_Click(sender As Object, e As EventArgs) Handles btnReq07.Click
+        SendOverTCP(txtReq07_Request.Text, txtReq07_Response)
+    End Sub
+
+    Private Sub btnReq10_Click(sender As Object, e As EventArgs) Handles btnReq10.Click
+        SendOverTCP(Req10ResponseTemplate, txtReq10_Response)
+
+        btnReq10.Enabled = False
+        client.Close()
+    End Sub
 End Class
