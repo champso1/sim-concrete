@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11512.155 d18.3
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Sim_Concrete", "Sim_Concrete\Sim_Concrete.vbproj", "{2D4CAD3E-6919-4F36-B290-AC95D3C5B4FB}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Sim_PLC", "Sim_PLC\Sim_PLC.vbproj", "{A35871A8-85C5-43E8-B32B-455DFABD97D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +17,15 @@ Global
 		{2D4CAD3E-6919-4F36-B290-AC95D3C5B4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D4CAD3E-6919-4F36-B290-AC95D3C5B4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D4CAD3E-6919-4F36-B290-AC95D3C5B4FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A35871A8-85C5-43E8-B32B-455DFABD97D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A35871A8-85C5-43E8-B32B-455DFABD97D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A35871A8-85C5-43E8-B32B-455DFABD97D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A35871A8-85C5-43E8-B32B-455DFABD97D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2F1E65F-24CA-4518-8274-FB4A3F11859C}
 	EndGlobalSection
 EndGlobal

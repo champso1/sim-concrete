@@ -1,5 +1,6 @@
 ﻿Imports System.Net
 Imports System.Net.Sockets
+Imports System.Threading
 Imports System.Threading.Tasks
 
 Public Class frmMain
@@ -17,19 +18,21 @@ Public Class frmMain
             tcpClient.Connect(txtIPAddress.Text, 25521)
             Dim networkStream As NetworkStream = tcpClient.GetStream()
 
-            If networkStream.CanWrite Then
-                networkStream.ReadTimeout = 5000
-
+            If networkStream.CanWrite And networkStream.CanRead Then
                 Dim sendBytes As Byte() = System.Text.Encoding.ASCII.GetBytes(str)
 
                 'Send the data as bytes
                 networkStream.Write(sendBytes, 0, sendBytes.Length)
 
+                networkStream.ReadTimeout = 5000
+                Dim returnbytes(tcpClient.ReceiveBufferSize) As Byte
+                Dim bytesread As Integer = networkStream.Read(returnbytes, 0, CInt(tcpClient.ReceiveBufferSize))
+
                 networkStream.Close()
                 tcpClient.Close()
                 Exit Sub
             Else
-                MessageBox.Show("Error: Cannot write data to PLC (stream not writable). Not sure what this means or how to fix. Good luck!")
+                MessageBox.Show("Error: Cannot read/write data to PLC (stream not readable/writable). Not sure what this means or how to fix. Good luck!")
                 networkStream.Close()
                 tcpClient.Close()
                 Exit Sub
