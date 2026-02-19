@@ -11,13 +11,13 @@ Public Class frmMain
     Private Req0406BatchID As String
     Private Req10ResponseTemplate As String = "<?xml version=""1.0""?><MESSAGE><ACKNOWLEDGE><TYPE>10</TYPE></ACKNOWLEDGE></MESSAGE>"
 
-    Private Sub SendOverTCP(str As String, ByRef resp_txtBox As TextBox)
+    Private Sub SendOverTCP(str As String)
         Try
             Dim tcpClient As New System.Net.Sockets.TcpClient()
             tcpClient.Connect(txtIPAddress.Text, 25521)
             Dim networkStream As NetworkStream = tcpClient.GetStream()
 
-            If networkStream.CanWrite And networkStream.CanRead Then
+            If networkStream.CanWrite Then
                 networkStream.ReadTimeout = 5000
 
                 Dim sendBytes As Byte() = System.Text.Encoding.ASCII.GetBytes(str)
@@ -25,32 +25,18 @@ Public Class frmMain
                 'Send the data as bytes
                 networkStream.Write(sendBytes, 0, sendBytes.Length)
 
-                ' Read the NetworkStream into a byte buffer.
-                Dim returnbytes(tcpClient.ReceiveBufferSize) As Byte
-                networkStream.Read(returnbytes, 0, CInt(tcpClient.ReceiveBufferSize))
-
-                ' Output the data received from the host to the console.
-                Dim returndata As String = System.Text.Encoding.ASCII.GetString(returnbytes)
-
-                resp_txtBox.Text = returndata
+                networkStream.Close()
                 tcpClient.Close()
+                Exit Sub
             Else
-                If Not networkStream.CanRead Then
-                    resp_txtBox.Text = "Error: Cannot write data to PLC. Check that PLC is online and at the correct IP Address"
-                    tcpClient.Close()
-                Else
-                    If Not networkStream.CanWrite Then
-                        resp_txtBox.Text = "Error: Cannot read return data from PLC. Check that PLC is online and at the correct IP Address"
-                        tcpClient.Close()
-                    End If
-                End If
+                MessageBox.Show("Error: Cannot write data to PLC (stream not writable). Not sure what this means or how to fix. Good luck!")
+                networkStream.Close()
+                tcpClient.Close()
+                Exit Sub
             End If
             Exit Sub
-
-            tcpClient.Close()
-            MsgBox("PLC did not respond in time. Check that PLC is online and at the correct IP Address")
         Catch ex As Exception
-            resp_txtBox.Text = "Failed to connect to PLC."
+            MessageBox.Show("Failed to connect, obtain a writable stream, and/or write to the PLC via that stream. Check that PLC is online and at the correct IP Address: " + txtIPAddress.Text)
         End Try
     End Sub
 
@@ -66,7 +52,7 @@ Public Class frmMain
     Private Sub btnReq00_Status_Click(sender As Object, e As EventArgs) Handles btnReq00_Status.Click
         txtReq00_Response.Text = "Awaiting response..."
 
-        SendOverTCP(txtReq00_Status.Text, txtReq00_Response)
+        SendOverTCP(txtReq00_Status.Text)
     End Sub
 
     Private Sub btnReq01_Batch_Click(sender As Object, e As EventArgs) Handles btnReq01_Batch.Click
@@ -90,7 +76,7 @@ Public Class frmMain
         txtReq01_Batch.Text = txtReq01_Batch.Text.Replace("%P3%", txtReq01_P3.Text)
         txtReq01_Batch.Text = txtReq01_Batch.Text.Replace("%P4%", txtReq01_P4.Text)
 
-        SendOverTCP(txtReq01_Batch.Text, txtReq01_Response)
+        SendOverTCP(txtReq01_Batch.Text)
     End Sub
 
     Private Sub btnReq05_Click(sender As Object, e As EventArgs) Handles btnReq05.Click
@@ -104,13 +90,13 @@ Public Class frmMain
         txtReq05_Request.Text = txtReq05_Request.Text.Replace("%ALIAS%", txtReq01_Alias.Text)
         txtReq05_Request.Text = txtReq05_Request.Text.Replace("%WM%", txtReq01_WM.Text)
 
-        SendOverTCP(txtReq05_Request.Text, txtReq05_Response)
+        SendOverTCP(txtReq05_Request.Text)
     End Sub
 
     Private Sub btnReq07_Click(sender As Object, e As EventArgs) Handles btnReq07.Click
         txtReq07_Response.Text = "Awaiting response..."
 
-        SendOverTCP(txtReq07_Request.Text, txtReq07_Response)
+        SendOverTCP(txtReq07_Request.Text)
     End Sub
 
     Private Async Sub StartListening(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -148,8 +134,8 @@ Public Class frmMain
 
     Private Sub ProcessClient()
         Dim networkStream As NetworkStream = client.GetStream()
-        If Not networkStream.CanRead Or Not networkStream.CanWrite Then
-            MessageBox.Show("[ERROR] ProcessClient(): Network stream is not readable and writable")
+        If Not networkStream.CanRead Then
+            MessageBox.Show("[ERROR] ProcessClient(): Network stream is not readable.")
         End If
 
         Dim returnbytes(client.ReceiveBufferSize) As Byte
@@ -161,8 +147,16 @@ Public Class frmMain
             Return
         End If
 
-        If returndata.IndexOf("<REQUEST>", StringComparison.CurrentCultureIgnoreCase) = -1 Then
-            MessageBox.Show("[ERROR] ProcessClient(): Received something other than a request.")
+        Dim is_request As Integer = -1
+        If Not returndata.IndexOf("<REQUEST>", StringComparison.CurrentCultureIgnoreCase) = -1 Then
+            is_request = 1
+        End If
+        If Not returndata.IndexOf("<ACKNOWLEDGE>", StringComparison.CurrentCultureIgnoreCase) = -1 Then
+            is_request = 0
+        End If
+
+        If is_request = -1 Then
+            MessageBox.Show("[ERROR] ProcessClient(): The received message is apparently neither a request nor an acknowledgement.")
             Return
         End If
 
@@ -170,6 +164,28 @@ Public Class frmMain
         Dim idx2 As Integer = returndata.IndexOf("</TYPE>", StringComparison.CurrentCultureIgnoreCase)
         Dim typestr As String = returndata.Substring(idx1, idx2 - idx1)
         Dim type As Integer = Integer.Parse(typestr)
+
+        If is_request = 0 Then
+            Select Case type
+                Case 0
+                    Me.Invoke(Sub()
+                                  txtReq00_Response.Text = returndata
+                              End Sub)
+                Case 1
+                    Me.Invoke(Sub()
+                                  txtReq01_Response.Text = returndata
+                              End Sub)
+                Case 5
+                    Me.Invoke(Sub()
+                                  txtReq05_Response.Text = returndata
+                              End Sub)
+                Case 7
+                    Me.Invoke(Sub()
+                                  txtReq07_Response.Text = returndata
+                              End Sub)
+            End Select
+            Return
+        End If
 
         Select Case type
             Case 4
@@ -180,9 +196,7 @@ Public Class frmMain
 
                 Dim responsetext As String = Req0406ResponseTemplate.Replace("%TYPE%", "04")
                 responsetext = responsetext.Replace("%BATCHID%", Req0406BatchID)
-                Dim sendBytes As Byte() = System.Text.Encoding.ASCII.GetBytes(responsetext)
-                Dim stream As NetworkStream = client.GetStream()
-                stream.Write(sendBytes, 0, sendBytes.Length)
+                SendOverTCP(responsetext)
 
                 Me.Invoke(Sub()
                               txtReq04_Request.Text = returndata
@@ -196,18 +210,15 @@ Public Class frmMain
 
                 Dim responsetext As String = Req0406ResponseTemplate.Replace("%TYPE%", "06")
                 responsetext = responsetext.Replace("%BATCHID%", Req0406BatchID)
-                Dim sendBytes As Byte() = System.Text.Encoding.ASCII.GetBytes(responsetext)
-                Dim stream As NetworkStream = client.GetStream()
-                stream.Write(sendBytes, 0, sendBytes.Length)
+                SendOverTCP(responsetext)
 
                 Me.Invoke(Sub()
                               txtReq06_Request.Text = returndata
                               txtReq06_Response.Text = responsetext
                           End Sub)
             Case 10
+                SendOverTCP(Req10ResponseTemplate)
                 Dim sendBytes As Byte() = System.Text.Encoding.ASCII.GetBytes(Req10ResponseTemplate)
-                Dim stream As NetworkStream = client.GetStream()
-                stream.Write(sendBytes, 0, sendBytes.Length)
 
                 Me.Invoke(Sub()
                               txtReq10_Request.Text = returndata
@@ -216,7 +227,7 @@ Public Class frmMain
         End Select
 
         ' MessageBox.Show("Received Request [" + Str(type) + "]!")
-        If type = 10 Then Return ' We don't want to alert on the status request I think, a bit useless
+        If type = 10 Then Return ' We don't want to alert on the status request I think, a bit annoying since it happens every time
         Dim dialogres As DialogResult = MessageBox.Show("Received Request " + Str(type) + ". Go to tab?", "Title", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
         If (dialogres = DialogResult.Yes) Then
             Me.Invoke(Sub()
