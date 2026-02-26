@@ -105,7 +105,7 @@ Public Class frmMain
     Private Async Sub StartListening(sender As Object, e As EventArgs) Handles MyBase.Load
         If isRunning Then Return
 
-        Dim ipaddr As IPAddress = IPAddress.Parse("192.168.175.1")
+        Dim ipaddr As IPAddress = IPAddress.Parse("192.168.175.4")
         listener = New TcpListener(ipaddr, 25522)
         Try
             listener.Start()
